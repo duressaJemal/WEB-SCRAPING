@@ -1,0 +1,25 @@
+Xpath play ground: https://scrapinghub.github.io/xpath-playground/
+
+ /: Select the children from node set on the left side
+ of this character
+
+ Ex: //body/text()
+
+ //: Specifies that the matching node set should be located at any level
+ within the document
+
+ Ex: //body//text()
+
+ . : Specifies the current context should be used(refers to present node)
+
+ Ex: //h1/.
+
+ .. : Refers to a parent node
+
+ Ex: //h1/..
+
+/* : Select all the children nodes considering the current context
+
+@: Select an attribute
+(): Groupoing an XPath expression
+[n]: Indicates that a node with index "n" should be selected
