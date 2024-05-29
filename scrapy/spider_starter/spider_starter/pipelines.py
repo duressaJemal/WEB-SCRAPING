@@ -32,7 +32,7 @@ class MongoDBPipeline:
         logging.warning("Spider closed from pipeline")
 
     def process_item(self, item, spider):
-        self.db[self.collection_name].insert(item)
+        self.db[self.collection_name].insert_one(item)
         return item
 
 

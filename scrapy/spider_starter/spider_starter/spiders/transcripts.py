@@ -35,7 +35,7 @@ class TranscriptsSpider(CrawlSpider): # crawl spider template
         yield {
             "title": article.xpath(".//h1/text()").get(),
             "description": article.xpath(".//p/text()").get(),
-            "transcript": article.xpath(".//div/text()").getall(), # too much data
-            "url": response.url,
+            # "transcript": article.xpath(".//div/text()").getall(), # too much data
+            # "url": response.url,
             # "User-Agent": response.request.headers["User-Agent"]
         }
