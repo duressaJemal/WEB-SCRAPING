@@ -8,6 +8,7 @@
 import logging
 import pymongo
 import os
+import sqlite3
 
 from dotenv import load_dotenv
 from itemadapter import ItemAdapter
@@ -20,7 +21,6 @@ class MongoDBPipeline:
     CLIENT = os.getenv("MONGO_CLIENT")
     collection_name = "transcripts"
     database_name = "My_DB"
-
 
     def open_spider(self, spider):
         self.client = pymongo.MongoClient(self.CLIENT)
@@ -36,3 +36,38 @@ class MongoDBPipeline:
         return item
 
 
+class SQLitePipeline:
+
+    def open_spider(self, spider):
+        self.connection = sqlite3.connect("transcripts.db")
+        self.cursor = self.connection.cursor()
+
+        # query
+        try:
+            self.cursor.execute(
+                """
+                CREATE TABLE transcripts(
+                    title TEXT,
+                    description TEXT,
+                    transcript TEXT
+                )
+                """
+            )
+        except sqlite3.OperationalError:
+            pass
+
+        logging.warning("Spider opened from pipeline")
+
+    def close_spider(self, spider):
+        self.connection.close()
+        logging.warning("Spider closed from pipeline")
+
+    def process_item(self, item, spider):
+        self.cursor.execute(
+            """
+            INSERT INTO transcripts(title, description, transcript) VALUES(?, ?, ?)
+            """,
+            (item.get("title"), item.get("description"), item.get("transcript")),
+        )
+        self.connection.commit()
+        return item
