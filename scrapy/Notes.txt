@@ -1,0 +1,29 @@
+Random User Agent in Scrapy At Scale: https://www.zenrows.com/blog/scrapy-user-agent#get-random-ua-at-scale
+Also provides means to set multiple user agents in middleware.
+
+User-Agents: https://explore.whatismybrowser.com/useragents/explore/
+
+anti-bot challenges:
+
+    IP banning
+    like CAPTCHAS,
+    browser fingerprinting
+    honeypot traps,
+    IP rate limiting,
+    techniques based on machine learning.
+
+heavily protected web pages:
+    https://www.g2.com/products/jira/reviews
+
+
+# COMMANDS
+
+scrapy shell url
+request.headers # to see what the user agent is(This shows what the global user agent is.)
+
+scrapy genspider -l
+scrapy genspider -t crawl transcripts url
+
+
+# QUESTIONS:
+ (//a[@rel="next"])[1] and //a[@rel="next"][1] ??

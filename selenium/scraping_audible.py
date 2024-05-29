@@ -36,7 +36,7 @@ while current_page <= int(last_page):
     # time.sleep(3)
 
     ## explicit wait: Better for production
-    
+
     container = WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, "adbl-impression-container")))
     products = WebDriverWait(container, 5).until(EC.presence_of_all_elements_located((By.XPATH, "./div/span/ul/li")))
 
@@ -45,7 +45,7 @@ while current_page <= int(last_page):
 
     for product in products:
         title = product.find_element(By.XPATH, ".//h3[contains(@class, 'bc-heading')]").text
-        print("Title: ", title)
+        # print("Title: ", title)
         book_title.append(title)
         book_author.append(product.find_element(By.XPATH, ".//li[contains(@class, 'authorLabel')]").text)
         book_runtime.append(product.find_element(By.XPATH, ".//li[contains(@class, 'runtimeLabel')]").text)
