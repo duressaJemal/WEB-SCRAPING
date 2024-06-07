@@ -3,8 +3,7 @@ import time
 import os
 
 web = "https://twitter.com/"
-path = "/Users/frank/Downloads/chromedriver"
-driver = webdriver.Chrome(path)
+driver = webdriver.Chrome()
 driver.get(web)
 driver.maximize_window()
 
